@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Автомобили</title>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #919191;
+      
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 70px;
+    }
+
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .car-card {
+      background: rgb(201, 201, 201);
+      border-radius: 10px;
+      
+      box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-container {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .slider-images {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      height: 100%;
+    }
+
+    .slider-images img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow.left {
+      left: 5px;
+    }
+
+    .arrow.right {
+      right: 5px;
+    }
+
+    .car-info {
+      padding: 15px;
+    }
+
+    .car-info h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .car-info p {
+      font-size: 14px;
+      color: #555;
+      margin: 2px 0;
+    }
+
+    .price {
+      font-size: 18px;
+      color: #007BFF;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 960px) {
+      .car-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .car-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .cover{
+      width: 100%;
+      margin-bottom: 10%;
+    
+    }
+  </style>
+</head>
+<body>
+<img  class="cover" src="mercedes_amg_gt_63_4matic__2023_4k-HD.jpg" alt="">
+<h1>Налични автомобили</h1>
+
+<div class="car-grid">
+  <!-- Кола 1 -->
+  <div class="car-card">
+    <div class="slider-container">
+      <button class="arrow left" onclick="slideLeft(0)">&#8249;</button>
+      <div class="slider-images" id="slider-0">
+        <img src="C63FRONT.jpg" alt="Car 1-1">
+        <img src="C63REAR.jpg" alt="Car 1-2">
+      </div>
+      <button class="arrow right" onclick="slideRight(0)">&#8250;</button>
+    </div>
+    <div class="car-info">
+      <h2>Mercedes-Benz C63</h2>
+      <p>Година: 2020</p>
+      <p>Гориво: Бензин</p>
+      <p>Цвят: Сив</p>
+      <p class="price">52 000 лв.</p>
+    </div>
+  </div>
+
+  <!-- Кола 2 -->
+  <div class="car-card">
+    <div class="slider-container">
+      <button class="arrow left" onclick="slideLeft(1)">&#8249;</button>
+      <div class="slider-images" id="slider-1">
+        <img src="EWAGONFRONT.jpg" alt="Car 2-1">
+        <img src="EWAGONREAR.jpg" alt="Car 2-2">
+      </div>
+      <button class="arrow right" onclick="slideRight(1)">&#8250;</button>
+    </div>
+    <div class="car-info">
+      <h2>Mercedes-Benz E 320</h2>
+      <p>Година: 2010</p>
+      <p>Гориво: Дизел</p>
+      <p>Цвят: Черен</p>
+      <p class="price">20 500 лв.</p>
+    </div>
+  </div>
+
+  <!-- Кола 3 -->
+  <div class="car-card">
+    <div class="slider-container">
+      <button class="arrow left" onclick="slideLeft(2)">&#8249;</button>
+      <div class="slider-images" id="slider-2">
+        <img src="GCLASS.jpg" alt="Car 3-1">
+        <img src="GCLASSREAR.jpg" alt="Car 3-2">
+      </div>
+      <button class="arrow right" onclick="slideRight(2)">&#8250;</button>
+    </div>
+    <div class="car-info">
+      <h2>Mercedes-Benz G63</h2>
+      <p>Година: 2020</p>
+      <p>Гориво: Бензин</p>
+      <p>Цвят: Бял</p>
+      <p class="price">300 200 лв.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sliders = [
+    { index: 0, current: 0 },
+    { index: 1, current: 0 },
+    { index: 2, current: 0 }
+  ];
+
+  function slideLeft(i) {
+    const slider = document.getElementById(`slider-${i}`);
+    const total = slider.children.length;
+    sliders[i].current = (sliders[i].current - 1 + total) % total;
+    slider.style.transform = `translateX(-${sliders[i].current * 100}%)`;
+  }
+
+  function slideRight(i) {
+    const slider = document.getElementById(`slider-${i}`);
+    const total = slider.children.length;
+    sliders[i].current = (sliders[i].current + 1) % total;
+    slider.style.transform = `translateX(-${sliders[i].current * 100}%)`;
+  }
+</script>
+
+</body>
+</html>

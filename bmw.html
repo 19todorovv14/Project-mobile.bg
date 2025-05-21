@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Автомобили</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000000;
+      
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 70px;
+      color:white;
+    }
+
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .car-card {
+      background: rgb(166, 166, 166);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slider-container {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .slider-images {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      height: 100%;
+    }
+
+    .slider-images img {
+      width: 120%;
+      height: 215px;
+      object-fit: cover;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow.left {
+      left: 5px;
+    }
+
+    .arrow.right {
+      right: 5px;
+    }
+
+    .car-info {
+      padding: 15px;
+    }
+
+    .car-info h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .car-info p {
+      font-size: 14px;
+      color: #555;
+      margin: 2px 0;
+    }
+
+    .price {
+      font-size: 18px;
+      color: #007BFF;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 960px) {
+      .car-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .car-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .cover{
+      width: 100%;
+      margin-bottom: 10%;
+    
+    }
+  </style>
+</head>
+<body>
+<img class="cover" src="wp12025047.webp" alt="">
+
+<h1>Налични автомобили</h1>
+
+<div class="car-grid">
+  <!-- Кола 1 -->
+  <div class="car-card">
+    <div class="slider-container">
+      <button class="arrow left" onclick="slideLeft(0)">&#8249;</button>
+      <div class="slider-images" id="slider-0">
+        <img src="BMWWAGONFRONT.jpg" alt="Car 1-1">
+        <img src="BMWWAGONREAR.jpg" alt="Car 1-2">
+      </div>
+      <button class="arrow right" onclick="slideRight(0)">&#8250;</button>
+    </div>
+    <div class="car-info">
+      <h2>BMW 3 Серия</h2>
+      <p>Година: 2008</p>
+      <p>Гориво: Бензин</p>
+      <p>Цвят: Сив</p>
+      <p class="price">12 000 лв.</p>
+    </div>
+  </div>
+
+  <!-- Кола 2 -->
+  <div class="car-card">
+    <div class="slider-container">
+      <button class="arrow left" onclick="slideLeft(1)">&#8249;</button>
+      <div class="slider-images" id="slider-1">
+        <img src="M5FRONT.jpg" alt="Car 2-1">
+        <img src="M5REAR.jpg" alt="Car 2-2">
+      </div>
+      <button class="arrow right" onclick="slideRight(1)">&#8250;</button>
+    </div>
+    <div class="car-info">
+      <h2>BMW 5 Серия</h2>
+      <p>Година: 2017</p>
+      <p>Гориво: Бензин</p>
+      <p>Цвят: Сив</p>
+      <p class="price">120 500 лв.</p>
+    </div>
+  </div>
+
+  <!-- Кола 3 -->
+  <div class="car-card">
+    <div class="slider-container">
+      <button class="arrow left" onclick="slideLeft(2)">&#8249;</button>
+      <div class="slider-images" id="slider-2">
+        <img src="X5FRONT.jpg" alt="Car 3-1">
+        <img src="X5REAR.jpg" alt="Car 3-2">
+      </div>
+      <button class="arrow right" onclick="slideRight(2)">&#8250;</button>
+    </div>
+    <div class="car-info">
+      <h2>BMW X5</h2>
+      <p>Година: 2010</p>
+      <p>Гориво: Дизел</p>
+      <p>Цвят: Бял</p>
+      <p class="price">18 000 лв.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sliders = [
+    { index: 0, current: 0 },
+    { index: 1, current: 0 },
+    { index: 2, current: 0 }
+  ];
+
+  function slideLeft(i) {
+    const slider = document.getElementById(`slider-${i}`);
+    const total = slider.children.length;
+    sliders[i].current = (sliders[i].current - 1 + total) % total;
+    slider.style.transform = `translateX(-${sliders[i].current * 100}%)`;
+  }
+
+  function slideRight(i) {
+    const slider = document.getElementById(`slider-${i}`);
+    const total = slider.children.length;
+    sliders[i].current = (sliders[i].current + 1) % total;
+    slider.style.transform = `translateX(-${sliders[i].current * 100}%)`;
+  }
+</script>
+
+</body>
+</html>

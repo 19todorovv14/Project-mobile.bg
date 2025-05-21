@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автомобили</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* .menu {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .menu select {
+            padding: 5px 10px;
+            font-size: 16px;
+        } */
+
+
+        .hero-text {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 60px;
+        }
+
+        .hero-text button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: 2px solid white;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+        }
+
+
+        .car-types {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            height: 100vh;
+            background: #111;
+        }
+
+        .car-type {
+            width: 30%;
+            height: 80%;
+            background-color: #222;
+            border: 2px solid white;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <video autoplay muted loop class="video-background">
+        <source src="background.mp4" type="video/mp4">
+        Твоят браузър не поддържа видеото.
+    </video>
+
+    <!-- <div class="menu">
+        <div>Меню</div>
+        <select onchange="alert('Избра: ' + this.value)">
+            <option selected disabled>Избери категория</option>
+            <option value="SUV">SUV</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Combi">Combi</option>
+        </select>
+    </div> -->
+
+
+    <div class="hero-text">
+        <h1>Избери твоя автомобил</h1>
+        <a href="kupeta.html"><button>ТИП АВТОМОБИЛ</button></a>
+        <a href="marki.html"><button>МАРКА АВТОМОБИЛ</button></a>
+    </div>
+
+    <!-- <div class="car-types" id="classi">
+        <div class="car-type" style="background-image: url('suv.jpg');">SUV</div>
+        <div class="car-type" style="background-image: url('sedan.jpg');">Sedan</div>
+        <div class="car-type" style="background-image: url('combi.jpg');">Combi</div>
+    </div> -->
+
+</body>
+
+</html>
